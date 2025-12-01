@@ -4,12 +4,9 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: '/', // Base path for GitHub Pages (use '/' for user/organization pages)
   build: {
-    rollupOptions: {
-      output: {
-        // Ensure proper MIME types for module scripts
-        format: 'es',
-      },
-    },
+    outDir: 'dist',
+    assetsDir: 'assets',
   },
 })
