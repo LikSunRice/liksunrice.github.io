@@ -551,7 +551,6 @@
    ============================================ */
 .save-game-section {
   margin-bottom: 1.5rem;
-  padding: 1rem;
   background-color: var(--bg-secondary);
   border-radius: var(--radius-md);
 }
