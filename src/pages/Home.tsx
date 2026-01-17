@@ -1,12 +1,17 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
+import { useReactiveBackground } from '../hooks/useReactiveBackground';
 
 const Home: React.FC = () => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [closingDropdown, setClosingDropdown] = useState<string | null>(null);
   const [openingDropdown, setOpeningDropdown] = useState<string | null>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  
+  const { ref: homeDivRef, backgroundPosition, handleMouseMove } = useReactiveBackground({
+    multiplier: 0.03,
+  });
 
   const handleMouseEnter = (dropdown: string) => {
     if (timeoutRef.current) {
@@ -29,7 +34,14 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div className="home-div">
+    <div 
+      ref={homeDivRef}
+      className="home-div"
+      onMouseMove={handleMouseMove}
+      style={{
+        backgroundPosition: `${backgroundPosition.x}px ${backgroundPosition.y}px`
+      }}
+    >
         <h1 className="home-title">liksunrice</h1>
         <p className="home-title-footer">known person?</p>
         <nav className="home-navbar">
